@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  app:
+    build: .
+    image: venomen/web-to-kindle:v1
+    ports:
+      - "8081:3000"
+    environment:
+      PORT: 3000
+      SCREENSHOT_URL: "https://forecast7.com/en/50d0422d00/rzeszow/"
