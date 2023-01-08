@@ -6,6 +6,12 @@ const fs = require('fs');
 
 const PORT = process.env.PORT || 3000;
 
+async function w8() {
+  //console.log('start timer');
+  await new Promise(resolve => setTimeout(resolve, 3000));
+  //console.log('after 3 second');
+}
+
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
@@ -15,6 +21,7 @@ express()
     const page = await browser.newPage();
     await page.setViewport({ width: 600, height: 800 });
     await page.goto(process.env.SCREENSHOT_URL || 'https://darksky.net/details/40.7127,-74.0059/2021-1-6/us12/en');
+    await w8();
     await page.screenshot({
       path: '/tmp/screenshot.png',
     });
